@@ -23,7 +23,7 @@ public class StartBlackjack extends Game {
         while (playAgain.equalsIgnoreCase("yes")) {
             GroupOfCards sharedDeck = new GroupOfCards(52);
             Dealer dealer = new Dealer("Dealer", sharedDeck);
-            Player player = new Player("Player1", sharedDeck);
+            Player player = new Player("Player", sharedDeck);
 
             blackjack.play(player, dealer);
 
