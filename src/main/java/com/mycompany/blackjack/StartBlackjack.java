@@ -21,8 +21,11 @@ public class StartBlackjack extends Game {
         String playAgain = "yes";
 
         while (playAgain.equalsIgnoreCase("yes")) {
+            // creating a deck
             GroupOfCards sharedDeck = new GroupOfCards(52);
+            // creating a dealer instance and passing the deck
             Dealer dealer = new Dealer("Dealer", sharedDeck);
+            // creating a player instance and passing the deck
             Player player = new Player("Player", sharedDeck);
 
             blackjack.play(player, dealer);
@@ -30,19 +33,23 @@ public class StartBlackjack extends Game {
             System.out.println("Please enter bet amount:");
             player.setBet(inp.nextDouble());
 
+            // outputs player's hand and bet amount
             System.out.println(
                     "This is your hand: \n" + player.getPlayerHand().toString() + "\nBet amount: $" + player.getBet());
 
+            // shows dealer's first card as in the real game
             dealer.revealFirstCard();
 
             System.out.println("Do you want to hit or stand?");
             player.setStance(inp.next());
 
+            // validating input to see if it matches hit or stand otherwise take input again
             while (!(player.getStance().equalsIgnoreCase("hit")) && !(player.getStance().equalsIgnoreCase("stand"))) {
                 System.out.println("Invalid input. Please enter hit or stand");
                 player.setStance(inp.next());
             }
 
+            // loop to be repeated while player's hand is below 21 and player wants to hit
             while (player.getPlayerHand().getHandVal() < 21 && player.getStance().equalsIgnoreCase("hit")) {
                 System.out.println("\nYou chose to hit.\n");
                 player.getPlayerHand().drawCard();
@@ -60,6 +67,7 @@ public class StartBlackjack extends Game {
                 }
             }
 
+            // if player chooses to stand their hand and bet amount is output
             if (player.getStance().equalsIgnoreCase("stand")) {
                 System.out.println("\nYou chose to stand.");
                 System.out.println(
@@ -67,6 +75,7 @@ public class StartBlackjack extends Game {
                                 + player.getBet());
                 System.out.println();
             }
+            // finding the winner
             blackjack.declareWinner(player, dealer);
             System.out.println("Do you want to play again?");
             playAgain = inp.next();
@@ -82,6 +91,7 @@ public class StartBlackjack extends Game {
         dealer.play();
     }
 
+    // returns true if player's hand is above 21 (because they bust)
     public static boolean isPlayerHandBust(int playerHandVal) {
         if (playerHandVal > 21) {
             return true;
@@ -89,6 +99,7 @@ public class StartBlackjack extends Game {
         return false;
     }
 
+    // returns true if dealer's hand is above 21 (because they bust)
     public static boolean isDealerHandBust(int dealerHandVal) {
         if (dealerHandVal > 21) {
             return true;
@@ -96,6 +107,8 @@ public class StartBlackjack extends Game {
         return false;
     }
 
+    // returns true if player's hand is 21 and dealer's hand is not 21
+    // which means player's hand is blackjack and they win
     public static boolean isPlayerHandBlackjack(int playerHandVal, int dealerHandVal) {
         if (playerHandVal == 21 && dealerHandVal != 21) {
             return true;

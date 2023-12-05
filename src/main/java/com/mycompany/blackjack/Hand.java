@@ -7,9 +7,9 @@ package com.mycompany.blackjack;
 import java.util.ArrayList;
 
 public class Hand implements Comparable<Hand> {
-    private ArrayList<Card> hand;
-    private int handVal = 0;
-    private GroupOfCards deck;
+    private ArrayList<Card> hand; // creates a hand
+    private int handVal = 0; // value of the cards in the hand
+    private GroupOfCards deck; // deck - will be used to create the hand
 
     public Hand(GroupOfCards deck) {
         this.deck = deck;
@@ -20,12 +20,6 @@ public class Hand implements Comparable<Hand> {
 
     public int getHandVal() {
         return handVal;
-    }
-
-    public void printDeck() {
-        for (int i = 0; i < deck.getSize(); i++) {
-            System.out.println(deck.getDeck().get(i));
-        }
     }
 
     // Used at the beginning to have two cards in the hand and used when player
@@ -47,7 +41,7 @@ public class Hand implements Comparable<Hand> {
         return hand.get(i);
     }
 
-    //
+    // returns the hand arraylist
     public ArrayList<Card> getHand() {
         return hand;
     }
@@ -62,6 +56,8 @@ public class Hand implements Comparable<Hand> {
         return printCards;
     }
 
+    // compareTo method which compares two hands using their hand value (total value
+    // of cards in the hand)
     @Override
     public int compareTo(Hand other) {
         if (this.handVal == other.handVal) {

@@ -48,6 +48,7 @@ public class GroupOfCards {
         return deck;
     }
 
+    // removes a card from the deck arraylist and reduces the size by 1
     public void removeCard(int i) {
         deck.remove(i);
         size -= 1;

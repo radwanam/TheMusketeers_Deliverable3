@@ -16,8 +16,8 @@ import java.util.ArrayList;
  */
 public class GenerateDeck {
 
+    // generates a traditional deck of 52 cards
     public ArrayList<Card> generateDeck() {
-
         ArrayList<Card> deck = new ArrayList<Card>();
 
         for (int i = 0; i < Card.Suit.values().length; i++) {
@@ -26,7 +26,6 @@ public class GenerateDeck {
                 deck.add(card);
             }
         }
-
         return deck;
     }
 }
